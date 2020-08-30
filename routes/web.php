@@ -2,6 +2,8 @@
 
 use App\Notifications\DatabaseNotification;
 use App\User;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Notification;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -22,3 +24,11 @@ Route::get('/', function () {
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
+Route::get('/notify',function (){
+    $users= User::all();
+    Notification::send($users, new DatabaseNotification('hello lucifer welcome to our new app'));
+});
+Route::get('/markallread',function (){
+    Auth::user()->notifications->markAsRead();
+    return redirect('/home');
+});

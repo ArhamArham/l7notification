@@ -50,6 +50,20 @@
                             @endif
                         @else
                             <li class="nav-item dropdown">
+                                <a id="navbarDropdown" class="nav-link" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+                                    {{Auth::user()->unreadNotifications->count()}} Notifications
+                                </a>
+
+                                <div class="dropdown-menu " aria-labelledby="navbarDropdown">
+                                @foreach(Auth::user()->notifications as $notificaton)
+                                    <div>
+                                        <p>{{$notificaton->data['letter']}}</p>
+                                    </div>
+                                @endforeach
+                                    <a href="/markallread">Mark all as read</a>
+                                </div>
+                            </li>
+                            <li class="nav-item dropdown">
                                 <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
                                     {{ Auth::user()->name }}
                                 </a>
