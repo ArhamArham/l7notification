@@ -1,5 +1,7 @@
 <?php
 
+use App\Notifications\DatabaseNotification;
+use App\User;
 use Illuminate\Support\Facades\Route;
 
 /*
